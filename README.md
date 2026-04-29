@@ -112,7 +112,7 @@ npx expo start
 K.J. Somaiya School of Engineering, Mumbai
 
 - LinkedIn: [linkedin.com/in/anuragvedak](https://linkedin.com/in/anuragvedak)
-- GitHub: [github.com/YOUR_USERNAME](https://github.com/YOUR_USERNAME)
+- GitHub: [github.com/Phaze19](https://github.com/Phaze19)
 
 ---
 
