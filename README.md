@@ -1,50 +1,121 @@
-# Welcome to your Expo app 👋
+# ⚡ 60sec News
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+> Your daily tech brief — AI-summarized news in 60 seconds.
 
-## Get started
+A full-stack mobile app that fetches trending tech news, summarizes each article using AI, and delivers it in a clean, minimal feed. Built in 2 days as a self-initiated project.
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## Features
 
-2. Start the app
+- AI-generated 3-line summaries for every article
+- "Why it matters" explanation for each story
+- Text-to-speech audio briefing — listen while you get ready
+- Save articles and read them later, offline
+- Category tabs — AI, Tech, Startups
+- Auto-refreshes every 3 hours automatically
+- NYT-inspired UI with Playfair Display typography
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## Tech Stack
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+| Layer | Technology |
+|-------|-----------|
+| Mobile Frontend | React Native (Expo) |
+| Database | Firebase Firestore |
+| Backend | Firebase Cloud Functions |
+| AI Summarization | Groq API (LLaMA 3.3) |
+| News Source | News API |
+| Scheduler | cron-job.org |
+| Font | Playfair Display (Google Fonts) |
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## Architecture
 
-When you're ready, run:
+Every 3 hours, a Cloud Function fetches the latest articles, sends them to Groq AI for summarization, and stores the enriched results in Firestore. The app reads from Firestore in real time.
 
+---
+
+## Getting Started
+
+### Prerequisites
+- Node.js v18+
+- Expo CLI
+- Firebase account
+- Groq API key (free)
+- News API key (free)
+
+### Installation
+
+1. Clone the repo
 ```bash
-npm run reset-project
+git clone https://github.com/Phaze19/SixtySecNews.git
+cd SixtySecNews
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Install dependencies
+```bash
+npm install
+```
 
-## Learn more
+3. Create a `firebaseConfig.js` file in the root:
+```javascript
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
 
-To learn more about developing your project with Expo, look at the following resources:
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
+```
 
-## Join the community
+4. Set your API keys in `functions/index.js`
 
-Join our community of developers creating universal apps.
+5. Deploy Cloud Functions
+```bash
+firebase deploy --only functions
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+6. Start the app
+```bash
+npx expo start
+```
+
+---
+
+## Screenshots
+
+*Coming soon*
+
+---
+
+## Download
+
+- Android APK — available on request
+- iOS — coming soon
+
+---
+
+## Author
+
+**Anurag Vedak**
+2nd Year Computer Engineering Student
+K.J. Somaiya School of Engineering, Mumbai
+
+- LinkedIn: [linkedin.com/in/anuragvedak](https://linkedin.com/in/anuragvedak)
+- GitHub: [github.com/YOUR_USERNAME](https://github.com/YOUR_USERNAME)
+
+---
+
+## License
+
+MIT License — feel free to use this project as inspiration for your own builds.
